@@ -94,7 +94,7 @@ void build() {
 		}
 
 		memPos += 14;
-		breakHits = data[memPos];
+		breakHits = data[memPos] / 6;
 
 		memPos += 5;
 		clothType = data[memPos];
@@ -300,12 +300,10 @@ void build() {
 		if (itemID % 2 == 1)
 			category = "Seed";
 
-		//ID|Item Name|Rarity|Properties|Category|Base Color|Overlay Color|Hits to break|Growtime in seconds|Clothing Type (None if its not a clothing,specified in category)
-
 		string propertyStr = (properties.empty()) ? "0" : join(properties, ',');
 
 		string str = to_string(itemID) + "|" + itemName + "|" + to_string(rarity) + "|";
-		str.append(propertyStr + "|" + category + "|000000|000000|" + to_string(breakHits) + "|");
+		str.append(propertyStr + "|" + category + "|0|0|" + to_string(breakHits) + "|");
 		str.append(to_string(growTime) + "|" + clothingType);
 
 		appendFile(fileName, str);
