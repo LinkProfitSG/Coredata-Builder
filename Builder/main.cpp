@@ -5,7 +5,6 @@
 #include <cstring>
 
 using namespace std;
-typedef unsigned char BYTE;
 
 template<typename T>
 string join(const T& vec, char delimeter) {
@@ -21,11 +20,6 @@ string join(const T& vec, char delimeter) {
 	return str;
 }
 
-void appendFile(string file, string str) {
-	ofstream ofs(file, ios_base::out | ios::app);
-	ofs << str << endl;
-}
-
 void build() {
 	string secret = "PBG892FXX982ABC*";
 	ifstream file("items.dat", ios::binary | ios::ate);
@@ -39,32 +33,31 @@ void build() {
 	char* data = new char[size];
 	file.seekg(0, ios::beg);
 
-	if (file.read((char*)(data), size)) 
-		cout << "Starting to decode items.dat..." << endl;
-	else {
-		cout << "Updating items.dat failed!" << endl;
+	if (!file.read((char*)(data), size)) {
+		printf("Failed to decode items.dat\n");
 		return;
 	}
 
-	int itemCount, memPos = 0;
-	int16_t version;
+	int itemCount = 0, memPos = 0;
+	int16_t version = 0;
 
 	memcpy(&version, data + memPos, 2);
 	memPos += 2;
 	memcpy(&itemCount, data + memPos, 4);
 	memPos += 4;
 
-	string fileName = "Coredata.txt";
 
-	appendFile(fileName, "//Start by parsing this in your map/dictionary to parse the other data.");
-	appendFile(fileName, "//ID|Item Name|Rarity|Properties|Category|Base Color|Overlay Color|Hits to break|Growtime in seconds|Clothing Type (None if its not a clothing,specified in category)\n\n");
+	ofstream ofs("Coredata.txt");
+
+	ofs << "// Start by parsing this in your map/dictionary to parse the other data." << endl
+		<< "// ID|Item Name|Rarity|Properties|Category|Base Color|Overlay Color|Hits to break|Growtime in seconds|Clothing Type (None if its not a clothing,specified in category)\n" << endl;
 
 	for (int i = 0; i < itemCount; i++) {
-		int itemID, extraFileHash, seedColor, growTime = 0;
+		int itemID = 0, extraFileHash = 0, seedColor = 0, growTime = 0;
 		char itemCategory, actionType, clothType, breakHits;
-		int16_t rarity;
+		int16_t rarity = 0;
 		vector<string> properties;
-		string itemName, clothingType = "None", category;;
+		string itemName = "", clothingType = "None", category = "";
 
 		memcpy(&itemID, data + memPos, 5);
 		memPos += 5;
@@ -194,7 +187,7 @@ void build() {
 			memPos += 13;
 
 		bool untradeable = false, autopickup = false, mod = false;
-		
+
 		switch (itemCategory) {
 		case 2:
 			autopickup = true;
@@ -211,12 +204,11 @@ void build() {
 		if ((itemCategory * -1) > 0)
 			untradeable = true;
 
-		if (mod)
-			properties.push_back("Mod");
-		if (untradeable)
-			properties.push_back("Untradable");
-		if (autopickup)
-			properties.push_back("AutoPickup");
+		if (mod) properties.push_back("Mod");
+
+		if (untradeable) properties.push_back("Untradable");
+
+		if (autopickup) properties.push_back("AutoPickup");
 
 		switch (actionType) {
 		case 0:
@@ -242,6 +234,7 @@ void build() {
 			break;
 		case 20:
 			category = "Clothing";
+
 			switch (clothType) {
 			case 0:
 				clothingType = "Hair";
@@ -290,11 +283,11 @@ void build() {
 			category = "Bulletin_Board";
 			break;
 		case 107:
-			clothingType = "Artifact";
+			clothingType = "Ances";
 			category = "Artifact";
 			break;
 		default:
-				break;
+			break;
 		}
 
 		if (itemID % 2 == 1)
@@ -302,18 +295,19 @@ void build() {
 
 		string propertyStr = (properties.empty()) ? "0" : join(properties, ',');
 
-		string str = to_string(itemID) + "|" + itemName + "|" + to_string(rarity) + "|";
-		str.append(propertyStr + "|" + category + "|0|0|" + to_string(breakHits) + "|");
-		str.append(to_string(growTime) + "|" + clothingType);
+		string str = to_string(itemID) + "|" + itemName + "|" + to_string(rarity) + "|" +
+			propertyStr + "|" + category + "|0|0|" + to_string(breakHits) + "|" +
+			to_string(growTime) + "|" + clothingType;
 
-		appendFile(fileName, str);
+		ofs << str << endl;
 	}
 
-	cout << "Coredata.txt has been built! There are " << itemCount << " items in total" << endl;
+	ofs.close();
+
+	printf("Coredata.txt has been created! \n(Items.dat version) : %d \n(Total items) : %d\n", version, itemCount);
 }
 
 int main() {
-	cout << "Building..." << endl;
 
 	build();
 
