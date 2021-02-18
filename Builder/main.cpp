@@ -197,8 +197,10 @@ void build() {
 			break;
 		case -123:
 			mod = true;
+			break;
 		case -126:
 			autopickup = true;
+			break;
 		}
 
 		if ((itemCategory * -1) > 0)
