@@ -31,9 +31,6 @@ class Builder {
 
 		return str;
 	}
-	void skipMemPos(int& memPos, const char* data) {
-		for (int j = 0; j < *&data[memPos - 2]; j++) memPos++;
-	}
 	std::string getItemCategory(const char actionType) {
 		switch (actionType) {
 			case 0:
