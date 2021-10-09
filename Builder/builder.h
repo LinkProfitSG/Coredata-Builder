@@ -3,8 +3,9 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include <cstring>
 #include <sstream>
+#include <array>
+#include <format>
 
 class Builder {
 	const std::string key_ = "PBG892FXX982ABC*";
@@ -32,598 +33,7 @@ class Builder {
 		return str;
 	}
 	std::string getItemCategory(const char actionType) {
-		switch (actionType) {
-			case 0:
-				return "Fist";
-			case 1:
-				return "Wrench";
-			case 2:
-				return "Door";
-			case 3:
-				return "Lock";
-			case 4:
-				return "Gems";
-			case 5:
-				return "Treasure";
-			case 6:
-				return "Deadly_Block";
-			case 7:
-				return "Trampoline_Block";
-			case 8:
-				return "Consummable";
-			case 9:
-				return "Gateway";
-			case 10:
-				return "Sign";
-			case 11:
-				return "SFX_Foreground";
-			case 12:
-				return "Toggleable_Foreground";
-			case 13:
-				return "Main_Door";
-			case 14:
-				return "Platform";
-			case 15:
-				return "Bedrock";
-			case 16:
-				return "Pain_Block";
-			case 17:
-				return "Foreground_Block";
-			case 18:
-				return "Background_Block";
-			case 19:
-				return "Seed";
-			case 20:
-				return "Clothing";
-			case 21:
-
-				return "Animated_Foreground_Block";
-				
-
-			case 22:
-
-				return "SFX_Background";
-				
-
-			case 23:
-
-				return "Toggleable_Background";
-				
-
-			case 24:
-
-				return "Bouncy";
-				
-
-			case 25:
-
-				return "Spike";
-				
-
-			case 26:
-
-				return "Portal";
-				
-
-			case 27:
-
-				return "Checkpoint";
-				
-
-			case 28:
-
-				return "Sheet_Music";
-				
-
-			case 29:
-
-				return "Slippery_Block";
-				
-
-			case 30:
-			case 48:
-
-				return "Unknown";
-				
-
-			case 31:
-
-				return "Switch_Block";
-				
-
-			case 32:
-
-				return "Chest";
-				
-
-			case 33:
-
-				return "Mailbox";
-				
-
-			case 34:
-
-				return "Bulletin_Board";
-				
-
-			case 35:
-
-				return "Event_Mystery_Block";
-				
-
-			case 36:
-
-				return "Random_Block";
-				
-
-			case 37:
-
-				return "Component";
-				
-
-			case 38:
-
-				return "Provider";
-				
-
-			case 39:
-
-				return "Chemical_Combiner";
-				
-
-			case 40:
-
-				return "Achievement_Block";
-				
-
-			case 41:
-
-				return "Weather_Machine";
-				
-
-			case 42:
-
-				return "Scoreboard";
-				
-
-			case 43:
-
-				return "Sungate";
-				
-
-			case 44:
-
-				return "Profile";
-				
-
-			case 45:
-
-				return "Toggleable_Deadly_Block";
-				
-
-			case 46:
-
-				return "Heart_Monitor";
-				
-
-			case 47:
-
-				return "Donation_Box";
-				
-
-			case 49:
-
-				return "Mannequin";
-				
-
-			case 50:
-
-				return "Security_Camera";
-				
-
-			case 51:
-
-				return "Magic_Egg";
-				
-
-			case 52:
-
-				return "Game_Block";
-				
-
-			case 53:
-
-				return "Game_Generator";
-				
-
-			case 54:
-
-				return "Xenonite";
-				
-
-			case 55:
-
-				return "Phone_Booth";
-				
-
-			case 56:
-
-				return "Crystal";
-				
-
-			case 57:
-
-				return "Crime_Villain";
-				
-
-			case 58:
-
-				return "Clothing_Compactor";
-				
-
-			case 59:
-
-				return "Spotlight";
-				
-
-			case 60:
-
-				return "Pushing_Block";
-				
-
-			case 61:
-
-				return "Display";
-				
-
-			case 62:
-
-				return "Vending";
-				
-
-			case 63:
-
-				return "Fish";
-				
-
-			case 64:
-
-				return "Fish_Tank_Port";
-				
-
-			case 65:
-
-				return "Solar_Collector";
-				
-
-			case 66:
-
-				return "Forge";
-				
-
-			case 67:
-
-				return "Giving_Tree";
-				
-
-			case 68:
-
-				return "Giving_Tree_Stump";
-				
-
-			case 69:
-
-				return "Steam_Block";
-				
-
-			case 70:
-
-				return "Steam_Pain_Block";
-				
-
-			case 71:
-
-				return "Steam_Music_Block";
-				
-
-			case 72:
-
-				return "Silkworm";
-				
-
-			case 73:
-
-				return "Sewing_Machine";
-				
-
-			case 74:
-
-				return "Country_Flag";
-				
-
-			case 75:
-
-				return "Lobster_Trap";
-				
-
-			case 76:
-
-				return "Painting_Easel";
-				
-
-			case 77:
-
-				return "Battle_Pet_Cage";
-				
-
-			case 78:
-
-				return "Pet_Trainer";
-				
-
-			case 79:
-
-				return "Steam_Engine";
-				
-
-			case 80:
-
-				return "Lock_Bot";
-				
-
-			case 81:
-
-				return "Weather_Machine_S1";
-				
-
-			case 82:
-
-				return "Spirit_Storage";
-				
-
-			case 83:
-
-				return "Display_Shelf";
-				
-
-			case 84:
-
-				return "VIP";
-				
-
-			case 85:
-
-				return "Chal_Timer";
-				
-
-			case 86:
-
-				return "Chal_Flag";
-				
-
-			case 87:
-
-				return "Fish_Mount";
-				
-
-			case 88:
-
-				return "Portrait";
-				
-
-			case 89:
-
-				return "Weather_Machine_S2";
-				
-
-			case 90:
-
-				return "Fossil";
-				
-
-			case 91:
-
-				return "Fossil_Prep_Station";
-				
-
-			case 92:
-
-				return "DNA_Processor";
-				
-
-			case 93:
-
-				return "Blaster";
-				
-
-			case 94:
-
-				return "Valhowla_Treasure";
-				
-
-			case 95:
-
-				return "Chemsynth";
-				
-
-			case 96:
-
-				return "Chemsynth_Tank";
-				
-
-			case 97:
-
-				return "Untrade_A_Box";
-				
-
-			case 98:
-
-				return "Oven";
-				
-
-			case 99:
-
-				return "Audio";
-				
-
-			case 100:
-
-				return "Geiger_Charger";
-				
-
-			case 101:
-
-				return "Adventure_Reset";
-				
-
-			case 102:
-
-				return "Tomb_Robber";
-				
-
-			case 103:
-
-				return "Faction";
-				
-
-			case 104:
-
-				return "Red_Faction";
-				
-
-			case 105:
-
-				return "Green_Faction";
-				
-
-			case 106:
-
-				return "Blue_Faction";
-				
-
-			case 107:
-
-				return "Artifact";
-				
-
-			case 108:
-
-				return "LemonJelly";
-				
-
-			case 109:
-
-				return "FishTrainingTank";
-				
-
-			case 110:
-
-				return "FishingBlock";
-				
-
-			case 111:
-
-				return "ItemSucker";
-				
-
-			case 112:
-
-				return "Planter";
-				
-
-			case 113:
-
-				return "Robot";
-				
-
-			case 114:
-
-				return "Command";
-				
-
-			case 115:
-
-				return "Ticket";
-				
-
-			case 116:
-
-				return "Stats_Block";
-				
-
-			case 117:
-
-				return "Field_Node";
-				
-
-			case 118:
-
-				return "Ouija_Board";
-				
-
-			case 119:
-
-				return "Architect_Machine";
-				
-
-			case 120:
-
-				return "Starship";
-				
-
-			case 121:
-
-				return "Spike";
-				
-
-			case 122:
-
-				return "Gravity_Well";
-				
-
-			case 123:
-
-				return "Autobreak_Blocks";
-				
-
-			case 124:
-
-				return "Autobreak_Trees";
-				
-
-			case 125:
-
-				return "Autobreak";
-				
-
-			case 126:
-
-				return "TimedBlock";
-				
-
-			case 127:
-
-				return "TimedPlatform";
-				
-
-			case 128:
-
-				return "Mud_Puddle";
-				
-
-			case 129:
-
-				return "Root_Cutting";
-				
-
-			case 130:
-
-				return "Safe_Vault";
-				
-
-			default:
-				return "";
-		}
+		return actionType > itemCategories_.size() ? "" : itemCategories_[static_cast<std::size_t>(actionType)];
 	}
 public:
 	void parseInfo(std::streamoff& fileSize, char*& data, int& totalItem, short& version) {
@@ -648,6 +58,7 @@ public:
 	void buildCoredata() {
 		std::streamoff fileSize;
 		std::string outputFile = this->outputFile_;
+
 		char* data;
 		int totalItem;
 		short version;
@@ -656,14 +67,14 @@ public:
 
 		int startItem = 0, endItem = totalItem;
 
-		printf("items.dat version : %d\n", version);
+		std::cout << std::format("items.dat version : {}\n", version);
 		
-		printf("Please enter a file name as the output. Press enter to ignore (Default: %s) : ", outputFile.c_str());
+		std::cout << std::format("Please enter a file name as the output. Press enter to ignore (Default: {}) : ", outputFile.c_str());
 		std::getline(std::cin, outputFile);
 
 		if (outputFile.empty()) outputFile = this->outputFile_;
 
-		printf("Please enter the range of items that will be parsed. Press enter to ignore (Default: %i-%i) : ", startItem, totalItem);
+		std::cout << std::format("Please enter the range of items that will be parsed. Press enter to ignore (Default: {}-{}) : ", startItem, totalItem);
 		{
 			std::string content;
 			std::getline(std::cin, content);
@@ -674,11 +85,10 @@ public:
 			}
 		}
 
-		printf(R"(Starting to parse from item "%i" to "%i" with %s as the output file...)", startItem, endItem, outputFile.c_str());
-		printf("\n");
+		std::cout << std::format("Starting to parse from item \"{}\" to \"{}\" with %s as the output file...\n", startItem, endItem, outputFile.c_str());
 		
 		std::ofstream outStream(outputFile + ".txt");
-		outStream << "Item range : " << startItem << "-" << endItem << "\n";
+		outStream << "// Item range : " << startItem << "-" << endItem << "\n";
 
 		int memPos = 6;
 
@@ -827,11 +237,142 @@ public:
 				(properties.empty() ? "0" : join(properties, ',')) + "|" + category + "|" +
 				"0|0|" + std::to_string(breakHits) + "|" + std::to_string(growTime) + "|" + clothingType;
 			
-			outStream << content << std::endl;
+			outStream << content << '\n';
 		}
 		outStream.close();
 
-		printf("%s.txt has been successfully built.\n", outputFile.c_str());
-		printf(R"(items.dat version with version "%i" with "%i" total item in it.)", version, totalItem);
+		std::cout << std::format("{}.txt has been successfully built.\n", outputFile.c_str());
+		std::cout << std::format("items.dat version with version \"{}\" with \"{}\" total item in it.)", version, totalItem);
 	}
+private:
+	std::array<std::string, 130> itemCategories_ = {
+		"Fist",
+		"Wrench",
+		"Door",
+		"Lock",
+		"Gems",
+		"Treasure",
+		"Deadly_Block",
+		"Trampoline_Block",
+		"Consumable",
+		"Gateaway",
+		"Sign",
+		"SFX_Foreground",
+		"Toggleable_Foreground",
+		"Main_Door",
+		"Platform",
+		"Bedrock",
+		"Pain_Block",
+		"Foreground_Block",
+		"Background_Block",
+		"Seed",
+		"Clothing",
+		"Animated_Foreground_Block",
+		"SFX_BACKGROUND",
+		"Toggleable_Background",
+		"Bouncy",
+		"Spike",
+		"Portal",
+		"Checkpoint",
+		"Sheet_Music",
+		"Slippery_Block",
+		"Switch_Block",
+		"Chest",
+		"Mailbox",
+		"Bulletin_Board",
+		"Event_Mystery_Block",
+		"Random_Block",
+		"Component",
+		"Provider",
+		"Chemical_Combiner",
+		"Achievement_Block",
+		"Weather_Machine",
+		"Scoreboard",
+		"Sungate",
+		"Profile",
+		"Toggleable_Deadly_Block",
+		"Heart_Monitor",
+		"Donation_Box",
+		"Mannequin",
+		"Security_Camera",
+		"Magic_Egg",
+		"Game_Block",
+		"Game_Generator",
+		"Xenonite",
+		"Phone_Booth",
+		"Crystal",
+		"Crime_Villain",
+		"Clothing_Compactor",
+		"Spotlight",
+		"Pushing_Block",
+		"Display",
+		"Vending",
+		"Fish",
+		"Fish_Tank_Port",
+		"Solar_Collector",
+		"Forge",
+		"Giving_Tree",
+		"Giving_Tree_Stump",
+		"Steam_Block",
+		"Stream_Pain_Block",
+		"Stream_Music_Block",
+		"Silkworm",
+		"Sewing_Machine",
+		"Country_Flag",
+		"Lobster_Trap",
+		"Painting_Easel",
+		"Battle_Pet_Cage",
+		"Pet_Trainer",
+		"Steam_Engine",
+		"Lock_Bot",
+		"Weather_Machine_S1",
+		"Spirit_Storage",
+		"Display_Shelf",
+		"VIP",
+		"Chal_Timer",
+		"Chal_Flag",
+		"Fish_Mount",
+		"Portrait",
+		"Weather_Machine_S2",
+		"Fossil",
+		"Fossil_Prep_Station",
+		"DNA_Processor",
+		"Blaster",
+		"Valhowla_Treasure",
+		"Chemsynth_Tank",
+		"Untrade_A_Box",
+		"Oven",
+		"Audio",
+		"Geiger_Charger",
+		"Adventure_Reset",
+		"Tomb_Robber",
+		"Faction",
+		"Red_Faction",
+		"Green_Faction",
+		"Blue_Faction",
+		"Artifact",
+		"LemonJelly",
+		"FishTrainingTank",
+		"FishingBlock",
+		"ItemSucker",
+		"Planter",
+		"Robot",
+		"Command",
+		"Ticket",
+		"Stats_Block",
+		"Field_Node",
+		"Ouija_Board",
+		"Architect_Machine",
+		"Starship",
+		"Spike",
+		"Gravity_Well",
+		"Autobreak_Blocks",
+		"Autobreak_Trees",
+		"Autobreak",
+		"TimedBlock",
+		"TimedPlatform",
+		"Mud_Puddle",
+		"Root_Cutting",
+		"Safe_Vault"
+	};
 };
